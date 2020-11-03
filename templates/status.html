@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <style>
+            p {
+                margin: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Status</h1>
+        <p>id: {{ id }}</p>
+        <p>email: {{ email }}</p>
+        <p>link: <a href="{{ link }}">{{ link }}</a></p>
+        <p>was read: {{ was_read }}</p>
+        {% if was_read == 'Yes' %}
+            <p>when read: {{ when_read }} (note: this is in UTC)</p>
+        {% endif %}
+        <p>is active: {{ is_active }}</p>
+        <form action="/activate" method="POST">
+            <input type="hidden" name="id" value="{{ id }}">
+            <input type="submit" value="Activate">
+        </form>
+        <form action="/del" method="POST">
+            <input type="hidden" name="id" value="{{ id }}">
+            <input type="submit" value="Delete">
+        </form>
+    </body>
+</html>
